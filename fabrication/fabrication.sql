@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 16 nov. 2022 à 14:08
+-- Généré le : sam. 19 nov. 2022 à 21:47
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -103,7 +103,8 @@ ALTER TABLE `distribution`
 -- Index pour la table `enterprise`
 --
 ALTER TABLE `enterprise`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_PAYS` (`ID_PAYS`);
 
 --
 -- Index pour la table `pays`
@@ -159,6 +160,12 @@ ALTER TABLE `produit`
 ALTER TABLE `distribution`
   ADD CONSTRAINT `ID_PAYS` FOREIGN KEY (`ID_PAYS`) REFERENCES `pays` (`ID`),
   ADD CONSTRAINT `ID_PRODUIT` FOREIGN KEY (`ID_PRODUIT`) REFERENCES `produit` (`ID`);
+
+--
+-- Contraintes pour la table `enterprise`
+--
+ALTER TABLE `enterprise`
+  ADD CONSTRAINT `enterprise_ibfk_1` FOREIGN KEY (`ID_PAYS`) REFERENCES `pays` (`ID`);
 
 --
 -- Contraintes pour la table `pays`
